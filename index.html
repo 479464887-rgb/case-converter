@@ -1,1 +1,156 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Case Converter — DevKit Tools</title><meta name="description" content="在线大小写Convert工具 - 大写/小写/首字母大写/驼峰/蛇形等"><style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d1117;color:#c9d1d9;min-height:100vh;display:flex;flex-direction:column}header{background:#161b22;border-bottom:1px solid #30363d;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}.logo{font-size:18px;font-weight:700;color:#58a6ff}.logo span{color:#f0c040}header .badge{font-size:10px;background:#daa520;color:#fff;padding:2px 8px;border-radius:10px;margin-left:8px}main{max-width:700px;margin:0 auto;padding:32px 24px;flex:1}.tool-wrapper{padding:20px 0}footer{padding:16px 24px;border-top:1px solid #21262d;text-align:center;font-size:12px;color:#484f58}footer a{color:#58a6ff;text-decoration:none;margin:0 8px}.btn-primary:hover{background:#2ea043!important}.btn:hover{background:#30363d!important}input:focus,textarea:focus,select:focus{outline:none;border-color:#58a6ff!important}.btn{font-family:inherit}</style></head><body><header><div class="logo">🛠 <span>Dev</span>Kit<span class="badge">BETA</span></div><div style="font-size:11px;color:#8b949e">🔒 Processed locally · 数据不Upload</div></header><main><h1 style="font-size:24px;margin-bottom:4px">Case Converter</h1><p style="color:#8b949e;font-size:14px;margin-bottom:8px">在线大小写Convert工具 - 大写/小写/首字母大写/驼峰/蛇形等</p><div class="tool-wrapper"><textarea id="cc-input" placeholder="Input文字..." rows="5" style="width:100%;padding:16px;font-size:14px;border:1px solid #30363d;border-radius:8px;background:#0d1117;color:#c9d1d9;resize:vertical;outline:none;font-family:mono;line-height:1.6"></textarea><div id="cc-results" style="display:grid;gap:8px;margin-top:12px"></div></div></main><footer><a href="https://github.com/479464887-rgb/case-converter">GitHub</a><span>·</span><span>© 2026 DevKit</span></footer><script>function convertAll(){const t=document.getElementById('cc-input').value;if(!t){document.getElementById('cc-results').innerHTML='';return}const ops=[{label:'UPPERCASE',fn:s=>s.toUpperCase()},{label:'lowercase',fn:s=>s.toLowerCase()},{label:'Title Case',fn:s=>s.replace(/\w\S*/g,w=>w.charAt(0).toUpperCase()+w.slice(1).toLowerCase())},{label:'Sentence case',fn:s=>s.charAt(0).toUpperCase()+s.slice(1).toLowerCase()},{label:'camelCase',fn:s=>s.replace(/[^a-zA-Z0-9]+(.)/g,(_,c)=>c.toUpperCase()).replace(/^[A-Z]/,(c)=>c.toLowerCase())},{label:'PascalCase',fn:s=>s.replace(/[^a-zA-Z0-9]+(.)/g,(_,c)=>c.toUpperCase()).replace(/^[a-z]/,(c)=>c.toUpperCase())},{label:'snake_case',fn:s=>s.replace(/\s+/g,'_').replace(/[^a-zA-Z0-9_]/g,'').toLowerCase()},{label:'kebab-case',fn:s=>s.replace(/\s+/g,'-').replace(/[^a-zA-Z0-9-]/g,'').toLowerCase()}];document.getElementById('cc-results').innerHTML=ops.map(o=>{const r=o.fn(t);return`<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:#8b949e">${o.label}</span><div style="display:flex;align-items:center;gap:8px"><span style="font-family:mono;font-size:14px;color:#c9d1d9">${r}</span><button onclick="navigator.clipboard.writeText('${r.replace(/'/g,"\'")}')" style="background:#21262d;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:4px 10px;cursor:pointer;font-size:11px">Copy</button></div></div>`}).join('')}document.getElementById('cc-input').addEventListener('input',()=>{clearTimeout(window._cct);window._cct=setTimeout(convertAll,200)})</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Case Converter — DevKit Tools</title>
+  <meta name="description" content="在线大小写Convert工具 - 大写/小写/首字母大写/驼峰/蛇形等">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0d1117;
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column
+    }
+
+    header {
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #58a6ff
+    }
+
+    .logo span {
+      color: #f0c040
+    }
+
+    header .badge {
+      font-size: 10px;
+      background: #daa520;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 10px;
+      margin-left: 8px
+    }
+
+    main {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      flex: 1
+    }
+
+    .tool-wrapper {
+      padding: 20px 0
+    }
+
+    footer {
+      padding: 16px 24px;
+      border-top: 1px solid #21262d;
+      text-align: center;
+      font-size: 12px;
+      color: #484f58
+    }
+
+    footer a {
+      color: #58a6ff;
+      text-decoration: none;
+      margin: 0 8px
+    }
+
+    .btn-primary:hover {
+      background: #2ea043 !important
+    }
+
+    .btn:hover {
+      background: #30363d !important
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: #58a6ff !important
+    }
+
+    .btn {
+      font-family: inherit
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">🛠 <span>Dev</span>Kit<span class="badge">BETA</span></div>
+    <div style="font-size:11px;color:#8b949e">🔒 Processed locally · 数据不Upload</div>
+  </header>
+  <main>
+    <h1 style="font-size:24px;margin-bottom:4px">Case Converter</h1>
+    <p style="color:#8b949e;font-size:14px;margin-bottom:8px">在线大小写Convert工具 - 大写/小写/首字母大写/驼峰/蛇形等</p>
+    <div class="tool-wrapper"><textarea id="cc-input" placeholder="Input文字..." rows="5" style="width:100%;padding:16px;font-size:14px;border:1px solid #30363d;border-radius:8px;background:#0d1117;color:#c9d1d9;resize:vertical;outline:none;font-family:mono;line-height:1.6"></textarea>
+      <div id="cc-results" style="display:grid;gap:8px;margin-top:12px"></div>
+    </div>
+  </main>
+  <footer><a href="https://github.com/479464887-rgb/case-converter">GitHub</a><span>·</span><span>© 2026 DevKit</span></footer>
+  <script>
+    function convertAll() {
+      const t = document.getElementById('cc-input').value;
+      if (!t) {
+        document.getElementById('cc-results').innerHTML = '';
+        return
+      }
+      const ops = [{
+        label: 'UPPERCASE',
+        fn: s => s.toUpperCase()
+      }, {
+        label: 'lowercase',
+        fn: s => s.toLowerCase()
+      }, {
+        label: 'Title Case',
+        fn: s => s.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+      }, {
+        label: 'Sentence case',
+        fn: s => s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
+      }, {
+        label: 'camelCase',
+        fn: s => s.replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()).replace(/^[A-Z]/, (c) => c.toLowerCase())
+      }, {
+        label: 'PascalCase',
+        fn: s => s.replace(/[^a-zA-Z0-9]+(.)/g, (_, c) => c.toUpperCase()).replace(/^[a-z]/, (c) => c.toUpperCase())
+      }, {
+        label: 'snake_case',
+        fn: s => s.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_]/g, '').toLowerCase()
+      }, {
+        label: 'kebab-case',
+        fn: s => s.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '').toLowerCase()
+      }];
+      document.getElementById('cc-results').innerHTML = ops.map(o => {
+        const r = o.fn(t);
+        return `<div style="background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:13px;color:#8b949e">${o.label}</span><div style="display:flex;align-items:center;gap:8px"><span style="font-family:mono;font-size:14px;color:#c9d1d9">${r}</span><button onclick="navigator.clipboard.writeText('${r.replace(/'/g,"\'")}')" style="background:#21262d;border:1px solid #30363d;color:#8b949e;border-radius:4px;padding:4px 10px;cursor:pointer;font-size:11px">Copy</button></div></div>`
+      }).join('')
+    }
+    document.getElementById('cc-input').addEventListener('input', () => {
+      clearTimeout(window._cct);
+      window._cct = setTimeout(convertAll, 200)
+    })
+  </script>
+</body>
+
+</html>
